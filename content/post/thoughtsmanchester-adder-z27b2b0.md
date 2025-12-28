@@ -3,7 +3,7 @@ title: 思考_曼切斯特加法器
 slug: thoughtsmanchester-adder-z27b2b0
 url: /post/thoughtsmanchester-adder-z27b2b0.html
 date: '2025-11-20 08:42:19+08:00'
-lastmod: '2025-12-28 13:57:42+08:00'
+lastmod: '2025-12-28 13:59:49+08:00'
 toc: true
 isCJKLanguage: true
 ---
