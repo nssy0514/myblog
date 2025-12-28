@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo NexT</title><link>//localhost:1313/</link><description>Recent content on Hugo NexT</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 02 Jan 2025 19:08:02 +0800</lastBuildDate><atom:link href="//localhost:1313/rss.xml" rel="self" type="application/rss+xml"/><item><title>欢迎加入 Hugo NexT 组织！</title><link>//localhost:1313/post/02-external-link/</link><pubDate>Wed, 01 Jun 2022 15:59:41 +0800</pubDate><guid>//localhost:1313/post/02-external-link/</guid><description>&lt;p&gt;欢迎来到 &lt;code&gt;Hugo NexT&lt;/code&gt; 文档站点！ 它是从 
+&lt;a href="https://theme-next.js.org/" title="Theme NexT" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Theme NexT
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; 移植过来的为 
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;打造的高品质优雅主题，保持简单易用的特性和强大的功能。&lt;/p&gt;
+&lt;h2 id="用户指南"&gt;用户指南
+&lt;a class="header-anchor" href="#%e7%94%a8%e6%88%b7%e6%8c%87%e5%8d%97"&gt;&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;设置 NexT 主题很容易。只需遵循文档，就可快速创建您的个人网站！&lt;/p&gt;</description></item><item><title>世界，你好！</title><link>//localhost:1313/demo/hello-world.html</link><pubDate>Thu, 02 Jun 2022 11:52:03 +0800</pubDate><guid>//localhost:1313/demo/hello-world.html</guid><description>&lt;blockquote&gt;
+ &lt;p&gt;“使用 &lt;code&gt;weight&lt;/code&gt; 关键字置顶文章。”&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; 是现今世界上最快的网站建设框架，也是最流行的开源静态站点生成器之一。 凭借其惊人的速度和灵活性，Hugo 让建设网站再次变得有趣起来。&lt;/p&gt;</description></item><item><title>支持在Markdown文档中实现块信息强调标注</title><link>//localhost:1313/demo/hugo-blockquote.html</link><pubDate>Thu, 02 Jan 2025 16:08:02 +0800</pubDate><guid>//localhost:1313/demo/hugo-blockquote.html</guid><description>&lt;p&gt;过去 &lt;code&gt;HugoNexT&lt;/code&gt; 主题都是通过自定义短语来实现块信息的标注，近期发现 &lt;code&gt;Hugo&lt;/code&gt; 从
+&lt;a href="https://github.com/gohugoio/hugo/releases/tag/v0.134.0" title="v0.134.0" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ v0.134.0
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;版本开始便是可以支持通过hook方式渲染Markdown文档中的Blockquote样式（需要自己实现），实现类似Github的警告风格样式。于是便在 &lt;code&gt;HugoNexT&lt;/code&gt; 主题中添加7种不同风格供用户可选择使用，还可以自定义图标与颜色配置。&lt;/p&gt;</description></item><item><title>图像浏览工具</title><link>//localhost:1313/demo/image-viewer.html</link><pubDate>Sun, 21 Jul 2024 10:28:12 +0800</pubDate><guid>//localhost:1313/demo/image-viewer.html</guid><description>&lt;p&gt;本主题自带图像浏览器功能，支持对文章区域内出现的图片进行浏览，点击图片可以查看大图，点击空白处可以关闭。不需要配置任何参数，只要在文章里面相应的位置添加图片信息即可 。&lt;/p&gt;</description></item><item><title>没有H1-6标题头和评论的文章</title><link>//localhost:1313/demo/no-header-title.html</link><pubDate>Thu, 06 Oct 2022 09:02:26 +0800</pubDate><guid>//localhost:1313/demo/no-header-title.html</guid><description>&lt;p&gt;刘慈欣2018克拉克奖获奖感言（部分内容节选）。&lt;/p&gt;
+
+
+
+ &lt;div class="post-alert-info"&gt;
+ &lt;div class="post-alert-title"&gt;
+ &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
+ &lt;span&gt;
+ 
+ 信息
+ 
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="post-alert-content"&gt;
+ &lt;p&gt;用于测试在没有H1-6标题头时，文章的目录导航是否会直接关闭，并关闭评论功能。&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;</description></item><item><title>Mermaid支持流程图</title><link>//localhost:1313/demo/mermaid-charts.html</link><pubDate>Sun, 18 Sep 2022 20:58:13 +0800</pubDate><guid>//localhost:1313/demo/mermaid-charts.html</guid><description>&lt;p&gt;本主题已支持 &lt;code&gt;Mermaid&lt;/code&gt; 实现以纯文本的方式绘制流程图、序列图、甘特图、状态图、关系图行等等，随着 &lt;code&gt;Mermaid&lt;/code&gt; 也在逐步发展，后续还会有各种各样的图被引入进来，更多的类型及使用方式可关注其官方网站：
+&lt;a href="https://mermaid-js.github.io/" title="https://mermaid-js.github.io/" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ https://mermaid-js.github.io/
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;。&lt;/p&gt;</description></item><item><title>数学公式渲染</title><link>//localhost:1313/demo/math-formula.html</link><pubDate>Sun, 11 Sep 2022 10:16:02 +0800</pubDate><guid>//localhost:1313/demo/math-formula.html</guid><description>&lt;p&gt;本主题支持 &lt;code&gt;mathjax&lt;/code&gt; 和 &lt;code&gt;katex&lt;/code&gt; 两种不的方案支持数学公式的渲染，可根据自已的需求进行选择。&lt;/p&gt;</description></item><item><title>支持用户自定义设计</title><link>//localhost:1313/demo/custom-files.html</link><pubDate>Sat, 10 Sep 2022 21:02:32 +0800</pubDate><guid>//localhost:1313/demo/custom-files.html</guid><description>&lt;p&gt;对于熟悉前端开发的用户来说，可以通过自定义文件配置，实现对站点的样式和布局进行个性化的调整。其中布局方面主要是支持左侧边栏的站点概览部分，以及站点底部2个位置，但样式的重置可以是整个站点的任意位置。&lt;/p&gt;</description></item><item><title>自定义短语示例</title><link>//localhost:1313/demo/shortcodes.html</link><pubDate>Sat, 06 Aug 2022 14:41:50 +0800</pubDate><guid>//localhost:1313/demo/shortcodes.html</guid><description>&lt;p&gt;虽然 &lt;code&gt;Markdown&lt;/code&gt; 语法已经非常丰富能够满足我们写文章的绝大部分需求，但是为更好的对文章内容进行更友好的排版，为引设计一套自定义的短语，便于在使用时能够快速引用。&lt;/p&gt;</description></item><item><title>关于 Hugo NexT 组织</title><link>//localhost:1313/about.html</link><pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate><guid>//localhost:1313/about.html</guid><description>&lt;p&gt;&lt;code&gt;Hugo NexT&lt;/code&gt; 组织是由众多喜爱 &lt;code&gt;NexT&lt;/code&gt; 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 &lt;code&gt;Hugo&lt;/code&gt; 引擎中也能得到发扬光大，在此也欢迎你的加入！&lt;/p&gt;
+&lt;h1 id="我们的愿景"&gt;我们的愿景
+&lt;a class="header-anchor" href="#%e6%88%91%e4%bb%ac%e7%9a%84%e6%84%bf%e6%99%af"&gt;&lt;/a&gt;
+&lt;/h1&gt;&lt;p&gt;延续 &lt;code&gt;NexT&lt;/code&gt; 经典的黑白调搭配，保持简单的易用性及强大的功能。&lt;/p&gt;</description></item><item><title>文章目录导航</title><link>//localhost:1313/demo/table-of-content.html</link><pubDate>Wed, 08 Jun 2022 21:12:52 +0800</pubDate><guid>//localhost:1313/demo/table-of-content.html</guid><description>&lt;p&gt;巴顿将军说过：“衡量一个人是否成功，不是看他站到顶峰，而是从顶峰跌落之后的反弹力”，褚时健的人生便是如此，中年发家致富，名利双收，之后又跌落到谷底，等到74岁再创业，10年后带着褚橙归来，东山再起收获亿万财富，他的发展轨迹就是反弹的过程。&lt;/p&gt;</description></item><item><title>Hugo 内置的 Chroma 语法高亮</title><link>//localhost:1313/demo/syntax-highlighting.html</link><pubDate>Tue, 07 Jun 2022 19:09:52 +0800</pubDate><guid>//localhost:1313/demo/syntax-highlighting.html</guid><description>&lt;p&gt;Hugo 通过 Chroma 提供非常快速的语法高亮显示，现 Hugo 中使用 Chroma 作为代码块高亮支持，它内置在 Go 语言当中，速度是真的非常、非常快，而且最为重要的是它也兼容之前我们使用的 Pygments 方式。&lt;/p&gt;
+&lt;p&gt;以下通过 Hugo 内置短代码 &lt;code&gt;highlight&lt;/code&gt; 和 &lt;code&gt;Markdown&lt;/code&gt; 代码块方式分别验证不同语言的代码块渲染效果并能正确高亮显示，有关优化语法突出显示的更多信息，请参阅 
+&lt;a href="https://gohugo.io/getting-started/configuration-markup#highlight" title="Hugo 文档" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo 文档
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;。&lt;/p&gt;</description></item><item><title>支持 Emoji 表情</title><link>//localhost:1313/demo/emoji-support.html</link><pubDate>Sat, 04 Jun 2022 19:46:45 +0800</pubDate><guid>//localhost:1313/demo/emoji-support.html</guid><description>&lt;p&gt;Emoji 可以通过多种方式在 Hugo 项目中启用。&lt;/p&gt;
+&lt;p&gt;
+&lt;a href="https://gohugo.io/functions/emojify/" title="emojify" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ &lt;code&gt;emojify&lt;/code&gt;
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; 方法可以直接在模板中调用, 或者使用
+&lt;a href="https://gohugo.io/templates/shortcode-templates#inline-shortcodes" title="行内 Shortcodes" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ 行内 Shortcodes
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;要全局使用 emoji, 需要在你的
+&lt;a href="https://gohugo.io/getting-started/configuration/" title="网站配置" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ 网站配置
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;中设置 &lt;code&gt;enableEmoji&lt;/code&gt; 为 &lt;code&gt;true&lt;/code&gt;，
+然后你就可以直接在文章中输入 emoji 的代码。&lt;/p&gt;</description></item><item><title>Markdown 语法支持</title><link>//localhost:1313/demo/markdown-syntax.html</link><pubDate>Fri, 03 Jun 2022 11:52:18 +0800</pubDate><guid>//localhost:1313/demo/markdown-syntax.html</guid><description>&lt;p&gt;仅以此篇文章来测试下在 &lt;code&gt;NexT&lt;/code&gt; 主题中在通过 &lt;code&gt;Hugo&lt;/code&gt; 引擎来建站时，是否支持 &lt;code&gt;Markdown&lt;/code&gt; 文件内容中所写的各种语法，并展示下实际的效果。&lt;/p&gt;</description></item><item><title>站点示例</title><link>//localhost:1313/flinks.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>//localhost:1313/flinks.html</guid><description>&lt;p&gt;如想交换本站友情链接，请在评论区留下你的站点信息，格式参考如下：&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt" id="hl-0-1"&gt;&lt;a class="lnlinks" href="#hl-0-1"&gt;1&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-2"&gt;&lt;a class="lnlinks" href="#hl-0-2"&gt;2&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-3"&gt;&lt;a class="lnlinks" href="#hl-0-3"&gt;3&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-4"&gt;&lt;a class="lnlinks" href="#hl-0-4"&gt;4&lt;/a&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Hugo-NexT&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;desc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Hugo NexT 官方预览网站。&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;avatar&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://hugo-next.eu.org/imgs/hugo_next_avatar.png&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://hugo-next.eu.org&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

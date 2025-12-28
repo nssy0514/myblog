@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo NexT</title><link>//localhost:1313/en-us/</link><description>Recent content on Hugo NexT</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 29 Jan 2025 21:24:02 +0800</lastBuildDate><atom:link href="//localhost:1313/en-us/rss.xml" rel="self" type="application/rss+xml"/><item><title>Welcome to the Hugo NexT organization</title><link>//localhost:1313/en-us/post/02-external-link/</link><pubDate>Sat, 25 Jan 2025 20:59:12 +0800</pubDate><guid>//localhost:1313/en-us/post/02-external-link/</guid><description>&lt;p&gt;Welcome to the Hugo NexT documentation site! It is from 
+&lt;a href="https://theme-next.js.org/" title="Theme NexT" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Theme NexT
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; The transplanted one is 
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; The high-quality and elegant theme created maintains its easy-to-use features and powerful functionality.&lt;/p&gt;
+&lt;h2 id="user-guide"&gt;User Guide
+&lt;a class="header-anchor" href="#user-guide"&gt;&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;Setting up a NexT theme is easy. Simply follow the documentation to quickly create your personal website!&lt;/p&gt;
+&lt;h2 id="feedback"&gt;Feedback
+&lt;a class="header-anchor" href="#feedback"&gt;&lt;/a&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Visit the Awesome NexT list to share plugins and tutorials with other users.&lt;/li&gt;
+&lt;li&gt;Join our Gitter chat.&lt;/li&gt;
+&lt;li&gt;Add or improve translations within seconds.&lt;/li&gt;
+&lt;li&gt;Report one in GitHub Issues &amp;#x1f41b; .&lt;/li&gt;
+&lt;li&gt;Apply for a new feature on GitHub.&lt;/li&gt;
+&lt;li&gt;Request a vote for the most popular feature.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Hello world</title><link>//localhost:1313/en-us/demo/hello-world.html</link><pubDate>Sat, 25 Jan 2025 19:12:32 +0800</pubDate><guid>//localhost:1313/en-us/demo/hello-world.html</guid><description>&lt;blockquote&gt;
+ &lt;p&gt;Use the keyword &lt;code&gt;weight&lt;/code&gt; to top the article.&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;, It is currently the fastest website construction framework in the world and one of the most popular open-source static site generators. With its astonishing speed and flexibility, Hugo has once again made website construction interesting.&lt;/p&gt;</description></item><item><title>Support block information emphasis annotation in Markdown documents</title><link>//localhost:1313/en-us/demo/hugo-blockquote.html</link><pubDate>Wed, 29 Jan 2025 21:24:02 +0800</pubDate><guid>//localhost:1313/en-us/demo/hugo-blockquote.html</guid><description>&lt;p&gt;In the past, the &lt;code&gt;Hugo NexT&lt;/code&gt; theme used to annotate block information through custom phrases. Recently, it has been discovered that &lt;code&gt;Hugo&lt;/code&gt; has been updated from 
+&lt;a href="https://github.com/gohugoio/hugo/releases/tag/v0.134.0" title="v0.134.0" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ v0.134.0
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;. From the beginning of the version, it is possible to support rendering Blockquote styles in Markdown documents through hook mode (which needs to be implemented by oneself), achieving warning style styles similar to Github. So 7 different styles were added to the &lt;code&gt;Hugo NexT&lt;/code&gt; theme for users to choose from, and they could also customize icons and color configurations.&lt;/p&gt;</description></item><item><title>Custom shortcode example</title><link>//localhost:1313/en-us/demo/shortcodes.html</link><pubDate>Wed, 29 Jan 2025 21:08:50 +0800</pubDate><guid>//localhost:1313/en-us/demo/shortcodes.html</guid><description>&lt;p&gt;Although the &lt;code&gt;Markdown&lt;/code&gt; syntax is already very rich and can meet the vast majority of our writing needs, in order to better layout the content of the article in a more friendly way, a set of custom phrases has been designed for citation, which can be quickly referenced when used.&lt;/p&gt;</description></item><item><title>Mermaid Support Flowchart</title><link>//localhost:1313/en-us/demo/mermaid-charts.html</link><pubDate>Wed, 29 Jan 2025 21:01:13 +0800</pubDate><guid>//localhost:1313/en-us/demo/mermaid-charts.html</guid><description>&lt;p&gt;This theme now supports the use of &lt;code&gt;Mermaid&lt;/code&gt; to draw flowcharts, sequence diagrams, Gantt charts, state diagrams, relationship diagrams, and more in plain text format. With the gradual development of &lt;code&gt;Mermaid&lt;/code&gt;, various types of diagrams will be introduced in the future. For more types and usage methods, please follow its official website:
+&lt;a href="https://mermaid-js.github.io/" title="https://mermaid-js.github.io/" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ https://mermaid-js.github.io/
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Mathematical Formula Rendering</title><link>//localhost:1313/en-us/demo/math-formula.html</link><pubDate>Wed, 29 Jan 2025 20:50:02 +0800</pubDate><guid>//localhost:1313/en-us/demo/math-formula.html</guid><description>&lt;p&gt;This theme supports two different schemes, &lt;code&gt;mathjax&lt;/code&gt; and &lt;code&gt;katex&lt;/code&gt;, and supports rendering mathematical formulas. You can choose according to your own needs.&lt;/p&gt;</description></item><item><title>Hugo's Built in Chroma Grammar Highlighting</title><link>//localhost:1313/en-us/demo/syntax-highlighting.html</link><pubDate>Wed, 29 Jan 2025 20:09:52 +0800</pubDate><guid>//localhost:1313/en-us/demo/syntax-highlighting.html</guid><description>&lt;p&gt;Hugo provides very fast syntax highlighting through Chroma, and now uses Chroma as code block highlighting support in Hugo. It is built into the Go language, and the speed is really, really fast. Most importantly, it is also compatible with the Pygments method we used before.&lt;/p&gt;
+&lt;p&gt;The following verifies the rendering effect of code blocks in different languages and their correct highlighting through Hugo&amp;rsquo;s built-in short code &amp;lsquo;highlight&amp;rsquo; and &amp;lsquo;Markodown&amp;rsquo; code blocks. For more information on optimizing syntax highlighting, please refer to the 
+&lt;a href="https://gohugo.io/getting-started/configuration-markup#highlight" title="Hugo Documentation" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Hugo Documentation
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Articles without H1-6 header and comments</title><link>//localhost:1313/en-us/demo/no-header-title.html</link><pubDate>Wed, 29 Jan 2025 19:45:16 +0800</pubDate><guid>//localhost:1313/en-us/demo/no-header-title.html</guid><description>&lt;p&gt;Liu Cixin&amp;rsquo;s acceptance speech for the 2018 Clark Prize (excerpt from some content).&lt;/p&gt;
+
+
+
+ &lt;div class="post-alert-info"&gt;
+ &lt;div class="post-alert-title"&gt;
+ &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
+ &lt;span&gt;
+ 
+ Info
+ 
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="post-alert-content"&gt;
+ &lt;p&gt;Used to test whether the directory navigation of an article will be directly closed and the comment function will be disabled without the H1-6 title header.&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;</description></item><item><title>Image Browsing Tool</title><link>//localhost:1313/en-us/demo/image-viewer.html</link><pubDate>Sat, 25 Jan 2025 21:28:12 +0800</pubDate><guid>//localhost:1313/en-us/demo/image-viewer.html</guid><description>&lt;p&gt;This theme comes with an image browser function that supports browsing images that appear in the article area. Clicking on an image can view a larger image, while clicking on a blank space can close it. No need to configure any parameters, just add image information at the corresponding position in the article.&lt;/p&gt;</description></item><item><title>Support Emoji emojis</title><link>//localhost:1313/en-us/demo/emoji-support.html</link><pubDate>Sat, 25 Jan 2025 21:18:52 +0800</pubDate><guid>//localhost:1313/en-us/demo/emoji-support.html</guid><description>&lt;p&gt;Emojis can be enabled in various ways in the Hugo project.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href="https://gohugo.io/functions/emojify/" title="emojify" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ &lt;code&gt;emojify&lt;/code&gt;
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;The method can be called directly in the template, or use [Inline Shortcodes](
+&lt;a href="https://gohugo.io/templates/shortcode-templates#inline" title="https://gohugo.io/templates/shortcode-templates#inline" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ https://gohugo.io/templates/shortcode-templates#inline
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; -shortcodes).&lt;/p&gt;
+&lt;p&gt;To use emojis globally, you need to 
+&lt;a href="https://gohugo.io/getting-started/configuration/" title="configure" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ configure
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; them on your website set &lt;code&gt;enableEmoji&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;,Then you can directly enter the emoji code in the article.&lt;/p&gt;</description></item><item><title>Support user-defined design</title><link>//localhost:1313/en-us/demo/custom-files.html</link><pubDate>Sat, 25 Jan 2025 21:12:32 +0800</pubDate><guid>//localhost:1313/en-us/demo/custom-files.html</guid><description>&lt;p&gt;For users familiar with front-end development, personalized adjustments can be made to the style and layout of the site through custom file configuration. In terms of layout, it mainly supports the site overview section in the left sidebar, as well as the two positions at the bottom of the site, but the style reset can be anywhere on the entire site.&lt;/p&gt;
+&lt;h2 id="open-configuration-parameters"&gt;Open configuration parameters
+&lt;a class="header-anchor" href="#open-configuration-parameters"&gt;&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;Firstly, it is necessary to clarify that the following parameters are configured in the &lt;code&gt;params&lt;/code&gt; area of the configuration file:&lt;/p&gt;</description></item><item><title>Article Catalog Navigation</title><link>//localhost:1313/en-us/demo/table-of-content.html</link><pubDate>Sat, 25 Jan 2025 20:58:52 +0800</pubDate><guid>//localhost:1313/en-us/demo/table-of-content.html</guid><description>&lt;p&gt;General Patton once said, &amp;ldquo;The measure of a person&amp;rsquo;s success is not by standing at the peak, but by the rebound force after falling from the peak.&amp;rdquo; Chu Shijian&amp;rsquo;s life was like this: he became wealthy in middle age, gained both fame and fortune, and then fell to the bottom again. He started his own business at the age of 74, returned with Chu Cheng 10 years later, and made a comeback with billions of wealth. His development trajectory was a process of rebound.&lt;/p&gt;</description></item><item><title>Markdown Syntax Support</title><link>//localhost:1313/en-us/demo/markdown-syntax.html</link><pubDate>Sat, 25 Jan 2025 20:52:18 +0800</pubDate><guid>//localhost:1313/en-us/demo/markdown-syntax.html</guid><description>&lt;p&gt;Only use this article to test whether the various syntax written in the content of the &lt;code&gt;Markdown&lt;/code&gt; file is supported when building a website using the &lt;code&gt;Hugo&lt;/code&gt; engine in the &lt;code&gt;NexT&lt;/code&gt; theme, and demonstrate the actual effect.&lt;/p&gt;</description></item><item><title>About Hugo NexT Organization</title><link>//localhost:1313/en-us/about.html</link><pubDate>Sat, 25 Jan 2025 18:00:52 +0800</pubDate><guid>//localhost:1313/en-us/about.html</guid><description>&lt;p&gt;The &lt;code&gt;Hugo NexT&lt;/code&gt; organization is jointly established by numerous friends from around the world who are fond of the &lt;code&gt;NexT&lt;/code&gt; theme and style. The aim is to continue promoting and enhancing this theme within the &lt;code&gt;Hugo&lt;/code&gt; engine. We warmly welcome you to join us!&lt;/p&gt;
+&lt;h1 id="our-vision"&gt;Our Vision
+&lt;a class="header-anchor" href="#our-vision"&gt;&lt;/a&gt;
+&lt;/h1&gt;&lt;p&gt;Continuing the classic black-and-white color scheme of &lt;code&gt;NexT&lt;/code&gt;, it maintains simple usability and powerful functionality.&lt;/p&gt;
+&lt;h1 id="usage-feedback"&gt;Usage Feedback
+&lt;a class="header-anchor" href="#usage-feedback"&gt;&lt;/a&gt;
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Join the online discussions on 
+&lt;a href="https://github.com/hugo-next/hugo-theme-next/discussions" title="GitHub Discussions" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ GitHub Discussions
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; or 
+&lt;a href="https://gitter.im/hugo-next/community" title="Gitter" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ Gitter
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; &amp;#x1f37b;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Bug&amp;amp;template=bug-report.md" title="GitHub Issues" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ GitHub Issues
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; Submit a bug report &amp;#x1f41b;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Feature&amp;#43;Request&amp;amp;template=feature-request.md" title="GitHub Feature" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ GitHub Feature
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; to propose new feature ideas &amp;#x2728;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+ &lt;div class="post-alert-info"&gt;
+ &lt;div class="post-alert-title"&gt;
+ &lt;i class="fa-solid fa-circle-info"&gt;&lt;/i&gt;
+ &lt;span&gt;
+ 
+ Info
+ 
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="post-alert-content"&gt;
+ &lt;p&gt;Chinese&amp;rsquo;s users can also join the QQ group for communication: 604710815&lt;/p&gt;</description></item><item><title>Demo Sites</title><link>//localhost:1313/en-us/flinks.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>//localhost:1313/en-us/flinks.html</guid><description>&lt;p&gt;If you want to exchange friendly links on this site, please leave your site information in the comment section. The format reference is as follows:&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt" id="hl-0-1"&gt;&lt;a class="lnlinks" href="#hl-0-1"&gt;1&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-2"&gt;&lt;a class="lnlinks" href="#hl-0-2"&gt;2&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-3"&gt;&lt;a class="lnlinks" href="#hl-0-3"&gt;3&lt;/a&gt;
+&lt;/span&gt;&lt;span class="lnt" id="hl-0-4"&gt;&lt;a class="lnlinks" href="#hl-0-4"&gt;4&lt;/a&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Hugo-NexT&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;desc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Hugo NexT Official Site.&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;avatar&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://hugo-next.eu.org/imgs/hugo_next_avatar.png&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://hugo-next.eu.org&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

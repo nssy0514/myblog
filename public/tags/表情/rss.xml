@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>表情 on Hugo NexT</title><link>//localhost:1313/tags/%E8%A1%A8%E6%83%85/</link><description>Recent content in 表情 on Hugo NexT</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Jun 2022 19:46:45 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/%E8%A1%A8%E6%83%85/rss.xml" rel="self" type="application/rss+xml"/><item><title>支持 Emoji 表情</title><link>//localhost:1313/demo/emoji-support.html</link><pubDate>Sat, 04 Jun 2022 19:46:45 +0800</pubDate><guid>//localhost:1313/demo/emoji-support.html</guid><description>&lt;p&gt;Emoji 可以通过多种方式在 Hugo 项目中启用。&lt;/p&gt;
+&lt;p&gt;
+&lt;a href="https://gohugo.io/functions/emojify/" title="emojify" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ &lt;code&gt;emojify&lt;/code&gt;
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt; 方法可以直接在模板中调用, 或者使用
+&lt;a href="https://gohugo.io/templates/shortcode-templates#inline-shortcodes" title="行内 Shortcodes" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ 行内 Shortcodes
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;要全局使用 emoji, 需要在你的
+&lt;a href="https://gohugo.io/getting-started/configuration/" title="网站配置" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl"&gt;
+ 网站配置
+ 
+ &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;
+ 
+&lt;/a&gt;中设置 &lt;code&gt;enableEmoji&lt;/code&gt; 为 &lt;code&gt;true&lt;/code&gt;，
+然后你就可以直接在文章中输入 emoji 的代码。&lt;/p&gt;</description></item></channel></rss>
