@@ -26,4 +26,3 @@ url: about.html
 > [!INFO]
 > 同时国内用户也可加入 QQ 群交流： 604710815
 
-{{< music url="/music/sky.mp3" name="天空之城" artist="宫崎骏" cover="/music/gongqijun.jpg" autoplay="true" >}}
