@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto" data-theme="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.153.3"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>我的博客</title>
-
-<meta name="description" content="">
+<title>思考_曼切斯特加法器 | 我的博客</title>
+<meta name="keywords" content="">
+<meta name="description" content="思考_曼切斯特加法器
+传统的行波进位加法器（RCA）慢，是因为进位信号必须经过每一级的复杂逻辑门（与非门、或非门等）才能传到下一级。
+曼彻斯特进位链通过定义三个状态，利用开关电路直接导通进位：">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/">
+<link rel="canonical" href="http://localhost:1313/post/thoughtsmanchester-adder-z27b2b0.html">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.a29c24210eb31d9ce56f669c66a35c9c51b17376b7764e336a49af7dec914cf0.css" integrity="sha256-opwkIQ6zHZzlb2acZqNcnFGxc3a3dk4zakmvfeyRTPA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -19,8 +20,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/post/thoughtsmanchester-adder-z27b2b0.html">
 <noscript>
     <style>
         #theme-toggle,
@@ -74,7 +74,7 @@
 
 </script>
 </head>
-<body class="list" id="top">
+<body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
@@ -121,91 +121,131 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>你好 👋</h1>
-    </header>
-    <div class="entry-content">
-        欢迎来到我的数字花园，这里记录微电子、生活与思考。
-    </div>
-    <footer class="entry-footer">
-        <div class="social-icons" >
-    <a href="https://github.com/%e4%bd%a0%e7%9a%84%e7%94%a8%e6%88%b7%e5%90%8d" target="_blank" rel="noopener noreferrer me"
-        title="Github">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-    <a href="mailto:%e4%bd%a0%e7%9a%84%e9%82%ae%e7%ae%b1@example.com" target="_blank" rel="noopener noreferrer me"
-        title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-    <polyline points="22,6 12,13 2,6"></polyline>
-</svg>
-    </a>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      思考_曼切斯特加法器
+    </h1>
+    <div class="post-meta"><span title='2025-11-20 08:42:19 +0800 CST'>2025年11月20日</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="思考_曼切斯特加法器">思考_曼切斯特加法器<a hidden class="anchor" aria-hidden="true" href="#思考_曼切斯特加法器">#</a></h1>
+<p>传统的行波进位加法器（RCA）慢，是因为进位信号必须经过每一级的复杂逻辑门（与非门、或非门等）才能传到下一级。</p>
+<p>曼彻斯特进位链通过定义三个状态，利用开关电路直接导通进位：</p>
+<ul>
+<li>​<strong>生成 (Generate,</strong>  **$G_i$**​ <strong>)</strong> : $A_i = 1, B_i = 1$。无论低位进位如何，当前位必然产生进位。</li>
+<li>​<strong>传播 (Propagate,</strong>  **$P_i$**​ <strong>)</strong> : $A_i \oplus B_i = 1$ (即其中一个是 1)。如果低位有进位，直接通过当前位传给高位。</li>
+<li><strong>消除 (Kill/Delete,</strong>  **$K_i$**​ <strong>)</strong> : $A_i = 0, B_i = 0$。无论低位进位如何，进位在此截断。</li>
+</ul>
+<p>逻辑公式：</p>
+<p>$$
+C_{i+1} = G_i + (P_i \cdot C_i)
+$$</p>
+<h4 id="结构组成">结构组成：<a hidden class="anchor" aria-hidden="true" href="#结构组成">#</a></h4>
+<ol>
+<li>
+<p>​<strong>预充电路（Precharge）</strong> : 在时钟 $\phi$ 为低电平时，将进位节点预充电到高电平（VDD）。</p>
+</li>
+<li>
+<p>​<strong>进位链（The Chain）</strong> :</p>
+<ul>
+<li>​<strong>传输开关</strong>: 由 $P_i$ 控制的 NMOS 传输管串联在一起。如果 $P_i$ 为高，进位信号 $C_i$ 直接“流”向 $C_{i+1}$。</li>
+<li>​<strong>下拉路径</strong>: 由 $G_i$ 控制的 NMOS 管接地。如果 $G_i$ 为高，直接将 $C_{i+1}$ 节点拉低（表示产生反向逻辑的进位，或者根据具体逻辑极性设计）。</li>
+</ul>
+</li>
+<li>
+<p>​<strong>求值（Evaluate）</strong> : 时钟 $\phi$ 变为高电平时，电路根据输入 $A$ 和 $B$ 的状态决定节点电平。</p>
+</li>
+</ol>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120090558-my1zh3z.png"></p>
+<p>预充电</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120090709-8ed8s08.png"></p>
+<p>求值 CLK = 1</p>
+<p>GI=0 ; PI=0</p>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120090811-twhp7hx.png"></p>
+<p>GI=1;PI=0</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120091103-if8csn6.png"></p>
+<p>GI=0;PI=1;CARRY IN =0</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>总的电路</p>
+<p>真值表：动态门 推出逻辑表达式</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120084828-ukxzm8o.png"></p>
+<p>schematic</p>
+<p>‍</p>
+<p><img alt="20251126-vmware-914" loading="lazy" src="/images/20251126-vmware-914-20251126220440-11vhpzr.png"></p>
+<p>1bit 曼切斯特加法器原理图</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251126220504-ctbwkte.png"></p>
+<p>仿真波形图</p>
+<p><img alt="fd39e0e31ad0ffd84be6d863bfe3d9da" loading="lazy" src="/images/fd39e0e31ad0ffd84be6d863bfe3d9da-20251120084317-gx7n30o.png"></p>
+<p>4bit 曼切斯特加法器原理图</p>
+<p>‍</p>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120085527-8wly4vw.png"></p>
+<p>电阻</p>
+<p>‍</p>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120085604-nhtweqo.png"></p>
+<p>延时</p>
+<p>4R2C 如何来的</p>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120090230-1ci7a0l.png"></p>
+<p>平方关系如何计算</p>
+<p>‍</p>
+<p><img alt="image" loading="lazy" src="/images/image-20251120090443-cx0lxz0.png"></p>
+<p>这俩个图有什么不同，延时为什么不一样<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>‍</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<h3 id="1-两个图的核心区别">1. 两个图的核心区别<a hidden class="anchor" aria-hidden="true" href="#1-两个图的核心区别">#</a></h3>
+<h4 id="右图常规静态-cla-standard-static-cla">右图：常规静态 CLA (Standard Static CLA)<a hidden class="anchor" aria-hidden="true" href="#右图常规静态-cla-standard-static-cla">#</a></h4>
+<ul>
+<li>
+<p>​<strong>标注</strong>​：<code>Carry lookahead logic OR / AND</code></p>
+</li>
+<li>
+<p>​<strong>核心结构</strong>​：使用的是​<strong>传统的静态 CMOS 逻辑门</strong>（与门、或门、非门，或者更复杂的 AOI/OAI 复合门）。</p>
+</li>
+<li>
+<p>工作方式：<br>
+它通过纯粹的布尔代数公式计算进位。例如，$C_4$ 的逻辑表达式是：</p>
+<p>$$
+C_4 = G_3 + P_3G_2 + P_3P_2G_1 + P_3P_2P_1G_0 + P_3P_2P_1P_0C_0
+$$</p>
+</li>
+<li>
+<p>​<strong>代价</strong>​：为了实现这个长长的公式，需要多级逻辑门，或者堆叠层数很高的晶体管（Fan-in 很大）。这意味着​<strong>节点电容大</strong>，且信号要经过好几级门的翻转。</p>
+</li>
+</ul>
+<h4 id="左图曼彻斯特-cla-mcc---manchester-carry-chain">左图：曼彻斯特 CLA (MCC - Manchester Carry Chain)<a hidden class="anchor" aria-hidden="true" href="#左图曼彻斯特-cla-mcc---manchester-carry-chain">#</a></h4>
+<ul>
+<li>​<strong>标注</strong>​：<code>Carry lookahead logic MCC</code></li>
+<li>​<strong>红圈含义</strong>：红圈圈住了 Bit 模块，暗示进位链是穿插在这些模块之间或者是利用传输管级联的。</li>
+<li>​<strong>核心结构</strong>​：使用的是我们刚才讨论的​<strong>传输管（Pass Transistor）或动态逻辑开关</strong>。</li>
+<li>工作方式：<br>
+它不像右边那样硬算公式，而是利用开关网络让电流直接流过。如果 $P_0, P_1, P_2, P_3$ 都为 1，电流就直接像穿过水管一样从头流到尾。</li>
+</ul>
+<hr>
+&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+</ol>
 </div>
 
-    </footer>
-</article>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DC运行流程
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DC运行流程 dc_shell -f run_syn.tcl | tee run_smic.log 仿真配置1
-总结配置2
-‍
-write -format verilog -hierarchy -output signed_vedic_mult_32bit_netlist.v VCS 仿真命令3
-数字全流程虚拟机4
-# 1. 检查设计是否有逻辑问题 check_design # 2. (可选) 设置一个简单的时钟约束，防止DC随意优化 # 假设你的时钟端口叫 clk，目标频率是 100MHz (10ns) create_clock -period 10 [get_ports clk] # 3. 开始综合 (这是最关键的一步，把代码变成门电路) compile -map_effort medium # 或者使用更强的优化命令: compile_ultra # 4. 修改命名规则 (非常重要！) # DC生成的网表里可能会有反斜杠 \ 或方括号 []，VCS有时不喜欢，需要改名 change_names -rules verilog -hierarchy # 5. 导出门级网表 (Netlist) -&gt; 给 VCS 用 write -format verilog -hierarchy -output signed_vedic_mult_32bit_netlist.v # 6. 导出标准延时文件 (SDF) -&gt; 给 VCS 做时序仿真用 write_sdf -version 2.1 signed_vedic_mult_32bit.sdf # 7. 导出约束文件 (SDC) -&gt; 以后做布局布线 (P&amp;R) 用 write_sdc signed_vedic_mult_32bit.sdc read_file -format db /home/ic_libs/TSMC_013/synopsys/typical.db
-...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-08 14:50:29 +0800 CST'>2025年12月8日</span></footer>
-  <a class="entry-link" aria-label="post link to DC运行流程" href="http://localhost:1313/post/dc-operation-process-2ktjse.html"></a>
-</article>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">数字IC设计全流程
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>数字IC设计全流程 DC运行流程1
-DC-verdi-vcs-DVE
-DC验证流程2
-‍
-DC修改3
-‍
-virtuoso加电源4
-‍
-‍
-好的，我们把复杂的IC设计流程简化成一条清晰的“生产线”。
-这是一个从 “代码概念” 到 “物理电路” 的转化过程。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-08 14:37:29 +0800 CST'>2025年12月8日</span></footer>
-  <a class="entry-link" aria-label="post link to 数字IC设计全流程" href="http://localhost:1313/post/the-whole-process-of-digital-ic-design-z1pdizu.html"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">思考_曼切斯特加法器
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>思考_曼切斯特加法器 传统的行波进位加法器（RCA）慢，是因为进位信号必须经过每一级的复杂逻辑门（与非门、或非门等）才能传到下一级。
-曼彻斯特进位链通过定义三个状态，利用开关电路直接导通进位：
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-11-20 08:42:19 +0800 CST'>2025年11月20日</span></footer>
-  <a class="entry-link" aria-label="post link to 思考_曼切斯特加法器" href="http://localhost:1313/post/thoughtsmanchester-adder-z27b2b0.html"></a>
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
 </article>
     </main>
     

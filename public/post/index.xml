@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>我的博客</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on 我的博客</description>
+    <title>Posts on 我的博客</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on 我的博客</description>
     <generator>Hugo -- 0.153.3</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 28 Dec 2025 14:15:23 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DC运行流程</title>
       <link>http://localhost:1313/post/dc-operation-process-2ktjse.html</link>
@@ -63,34 +63,6 @@
       <description>&lt;h1 id=&#34;思考_曼切斯特加法器&#34;&gt;思考_曼切斯特加法器&lt;/h1&gt;
 &lt;p&gt;传统的行波进位加法器（RCA）慢，是因为进位信号必须经过每一级的复杂逻辑门（与非门、或非门等）才能传到下一级。&lt;/p&gt;
 &lt;p&gt;曼彻斯特进位链通过定义三个状态，利用开关电路直接导通进位：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/archives/_index.en-us/</link>
-      <pubDate>Sat, 25 Jan 2025 20:46:25 +0800</pubDate>
-      <guid>http://localhost:1313/archives/_index.en-us/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>关于 Hugo NexT 组织</title>
-      <link>http://localhost:1313/about.html</link>
-      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
-      <guid>http://localhost:1313/about.html</guid>
-      <description>&lt;p&gt;&lt;code&gt;Hugo NexT&lt;/code&gt; 组织是由众多喜爱 &lt;code&gt;NexT&lt;/code&gt; 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 &lt;code&gt;Hugo&lt;/code&gt; 引擎中也能得到发扬光大，在此也欢迎你的加入！&lt;/p&gt;
-&lt;h1 id=&#34;我们的愿景&#34;&gt;我们的愿景&lt;/h1&gt;
-&lt;p&gt;延续 &lt;code&gt;NexT&lt;/code&gt; 经典的黑白调搭配，保持简单的易用性及强大的功能。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>站点示例</title>
-      <link>http://localhost:1313/flinks.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/flinks.html</guid>
-      <description>&lt;p&gt;如想交换本站友情链接，请在评论区留下你的站点信息，格式参考如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Hugo-NexT&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;desc&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Hugo NexT 官方预览网站。&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;avatar&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;https://hugo-next.eu.org/imgs/hugo_next_avatar.png&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;https://hugo-next.eu.org&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

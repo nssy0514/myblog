@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>DC运行流程 | 我的博客</title>
+<meta name="keywords" content="">
+<meta name="description" content="DC运行流程
+dc_shell -f run_syn.tcl | tee run_smic.log
+仿真配置1
+总结配置2
+‍
+write -format verilog -hierarchy -output signed_vedic_mult_32bit_netlist.v
+VCS 仿真命令3
+数字全流程虚拟机4
+# 1. 检查设计是否有逻辑问题
+check_design
+
+# 2. (可选) 设置一个简单的时钟约束，防止DC随意优化
+# 假设你的时钟端口叫 clk，目标频率是 100MHz (10ns)
+create_clock -period 10 [get_ports clk]
+
+# 3. 开始综合 (这是最关键的一步，把代码变成门电路)
+compile -map_effort medium
+# 或者使用更强的优化命令: compile_ultra
+
+# 4. 修改命名规则 (非常重要！)
+# DC生成的网表里可能会有反斜杠 \ 或方括号 []，VCS有时不喜欢，需要改名
+change_names -rules verilog -hierarchy
+
+# 5. 导出门级网表 (Netlist) -&gt; 给 VCS 用
+write -format verilog -hierarchy -output signed_vedic_mult_32bit_netlist.v
+
+# 6. 导出标准延时文件 (SDF) -&gt; 给 VCS 做时序仿真用
+write_sdf -version 2.1 signed_vedic_mult_32bit.sdf
+
+# 7. 导出约束文件 (SDC) -&gt; 以后做布局布线 (P&amp;R) 用
+write_sdc signed_vedic_mult_32bit.sdc
+
+
+read_file -format db /home/ic_libs/TSMC_013/synopsys/typical.db">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/dc-operation-process-2ktjse.html">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a29c24210eb31d9ce56f669c66a35c9c51b17376b7764e336a49af7dec914cf0.css" integrity="sha256-opwkIQ6zHZzlb2acZqNcnFGxc3a3dk4zakmvfeyRTPA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/post/dc-operation-process-2ktjse.html">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="我的博客 (Alt + H)">我的博客</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      DC运行流程
+    </h1>
+    <div class="post-meta"><span title='2025-12-08 14:50:29 +0800 CST'>2025年12月8日</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="dc运行流程">DC运行流程<a hidden class="anchor" aria-hidden="true" href="#dc运行流程">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tcl" data-lang="tcl"><span style="display:flex;"><span>dc_shell <span style="color:#f92672">-</span>f run_syn.tcl <span style="color:#f92672">|</span> tee run_smic.log
+</span></span></code></pre></div><p>仿真配置<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>总结配置<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>‍</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tcl" data-lang="tcl"><span style="display:flex;"><span>write <span style="color:#f92672">-</span>format verilog <span style="color:#f92672">-</span>hierarchy <span style="color:#f92672">-</span>output signed_vedic_mult_32bit_netlist.v
+</span></span></code></pre></div><p>VCS 仿真命令<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>数字全流程虚拟机<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tcl" data-lang="tcl"><span style="display:flex;"><span><span style="color:#75715e"># 1. 检查设计是否有逻辑问题
+</span></span></span><span style="display:flex;"><span>check_design
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. (可选) 设置一个简单的时钟约束，防止DC随意优化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 假设你的时钟端口叫 clk，目标频率是 100MHz (10ns)
+</span></span></span><span style="display:flex;"><span>create_clock <span style="color:#f92672">-</span>period <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">[</span>get_ports clk<span style="color:#66d9ef">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 开始综合 (这是最关键的一步，把代码变成门电路)
+</span></span></span><span style="display:flex;"><span>compile <span style="color:#f92672">-</span>map_effort medium
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者使用更强的优化命令: compile_ultra
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 修改命名规则 (非常重要！)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># DC生成的网表里可能会有反斜杠 \ 或方括号 []，VCS有时不喜欢，需要改名
+</span></span></span><span style="display:flex;"><span>change_names <span style="color:#f92672">-</span>rules verilog <span style="color:#f92672">-</span>hierarchy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. 导出门级网表 (Netlist) -&gt; 给 VCS 用
+</span></span></span><span style="display:flex;"><span>write <span style="color:#f92672">-</span>format verilog <span style="color:#f92672">-</span>hierarchy <span style="color:#f92672">-</span>output signed_vedic_mult_32bit_netlist.v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 6. 导出标准延时文件 (SDF) -&gt; 给 VCS 做时序仿真用
+</span></span></span><span style="display:flex;"><span>write_sdf <span style="color:#f92672">-</span>version <span style="color:#ae81ff">2.1</span> signed_vedic_mult_32bit.sdf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 7. 导出约束文件 (SDC) -&gt; 以后做布局布线 (P&amp;R) 用
+</span></span></span><span style="display:flex;"><span>write_sdc signed_vedic_mult_32bit.sdc
+</span></span></code></pre></div><ol>
+<li>
+<p>read_file -format db /home/ic_libs/TSMC_013/synopsys/typical.db</p>
+<ol>
+<li>read_file -format db /home/ICer/project/synopsys/lib/tsmc018/osu018_stdcells.db</li>
+</ol>
+</li>
+<li>
+<p>list_libs</p>
+</li>
+<li>
+<p>check_library</p>
+</li>
+<li>
+<p>remove_design -designs</p>
+</li>
+</ol>
+<p>‍</p>
+<hr>
+<p>这个库是后仿真用verilog库，dc综合后的网表仿真以及布局布线后网表仿真都用到它。一般随工艺库由foundry提供。举例来说，tower 0.18 工艺库，在主目录底下应该包含synopsys、astro等所用的库子目录。dc综合时用的工艺库应该包含在synopsys子目录下，同理，仿真用的verilog库应包含在名为verilog的子目录下，共包含2个文件，twr18.v 与 twr18_neg.v，其中后一个包含了负时序（- holdtiming）信息，但仿真速度较慢，一般不采用。在对综合或布局布线后网表进行仿真时将这个.v文件与所得的sdf或者spef文件一起载入仿真器仿真即可。当然，不同的foundry提供的工艺库目录结构可能略有不同，但基本上遵循上述的目录结构。楼主请到相应的库目录下查找一下即可。</p>
+<hr>
+<p>‍</p>
+<p>‍</p>
+<p>问题</p>
+<ol>
+<li>改变电压和输出芯片没变化，在亚阈值区</li>
+<li>怎么用向量测试</li>
+<li>我觉得还是先进行第二步，用modelsim看时序，写测试逻辑在所</li>
+<li>如何把32位乘法器模块化设计的更好些</li>
+</ol>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>翻译加e入<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>‍</p>
+<p>转换库<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p><strong>网表 (Netlist)</strong>  是由 <strong>Design Compiler (DC)</strong>  在运行完 <code>compile</code> 命令之后生成的。</p>
+<p>在你的脚本 <code>run.tcl</code>​ 中，它是由 <code>write</code> 这个命令产生的。</p>
+<h3 id="1-网表在哪里生成-where">1. 网表在哪里生成？ (Where)<a hidden class="anchor" aria-hidden="true" href="#1-网表在哪里生成-where">#</a></h3>
+<p>在你提供的 run.tcl 文件末尾，有一行：</p>
+<p>write -format ddc -hier -out unmapped/MY_DESIGN.ddc</p>
+<p><strong>⚠️ 注意：</strong>  这行生成的是 <code>.ddc</code>​ 文件（二进制数据库），只能给 DC 自己读，<strong>Modelsim 和 Virtuoso 读不懂！</strong></p>
+<p>你需要<strong>手动添加</strong>下面这一行命令到 <code>run.tcl</code>​ 的最后（在 <code>exit</code> 之前），才能生成通用的 Verilog 网表：</p>
+<p>Tcl</p>
+<pre tabindex="0"><code># 必须添加这一行来生成 .v 文件
+write -format verilog -hierarchy -output mult32_netlist.v
+</code></pre><ul>
+<li><strong>生成的时机：</strong>  必须在 <code>compile</code>​ 命令<strong>之后</strong>执行。</li>
+<li><strong>生成的位置：</strong>  会出现在你运行 DC 的当前文件夹下，名字叫 <code>mult32_netlist.v</code>。</li>
+</ul>
+<hr>
+<h3 id="2-网表的格式是怎样的-format">2. 网表的格式是怎样的？ (Format)<a hidden class="anchor" aria-hidden="true" href="#2-网表的格式是怎样的-format">#</a></h3>
+<p>网表虽然也是 <code>.v</code>​ 文件，但它和你要自己写的 <code>mult32.v</code> 长得完全不一样。</p>
+<ul>
+<li><strong>你的代码 (RTL):</strong>  描述的是“功能” (人类能看懂)。</li>
+<li><strong>网表 (Netlist):</strong>  描述的是“连接关系” (机器能看懂)。</li>
+</ul>
+<h4 id="举个例子对比">举个例子对比：<a hidden class="anchor" aria-hidden="true" href="#举个例子对比">#</a></h4>
+<p><strong>A. 你写的代码 (Behavioral RTL):</strong></p>
+<p>Verilog</p>
+<pre tabindex="0"><code>module mult32 (A, B, P);
+    input [31:0] A, B;
+    output [63:0] P;
+
+    assign P = A * B;  // 一句话搞定
+endmodule
+</code></pre><p>B. DC 生成的网表 (Gate-level Netlist):</p>
+<p>(这就是 mult32_netlist.v 里的内容，DC 把你的乘号打碎成了几千个门)</p>
+<p>Verilog</p>
+<pre tabindex="0"><code>module mult32 ( A, B, P );
+  input [31:0] A;
+  input [31:0] B;
+  output [63:0] P;
+  
+  // 1. 定义了一堆乱七八糟的中间连线
+  wire n1, n2, n3, n45, n_sys_12, net_334;
+
+  // 2. 调用工艺库里的“标准单元” (Standard Cells)
+  // AND2X1, XOR2X1 这些名字来自你的 SMIC .18 库
+  AND2X1 U1 ( .A(A[0]), .B(B[0]), .Y(n1) );
+  AND2X1 U2 ( .A(A[1]), .B(B[0]), .Y(n2) );
+  
+  // 3. 具体的连接关系
+  XOR2X1 U3 ( .A(n1), .B(n_sys_12), .Y(P[0]) );
+  INVX1  U4 ( .A(n45), .Y(net_334) );
+  
+  // ... 下面还有几千行这样的东西 ...
+endmodule
+</code></pre><h3 id="3-如何检查网表是否正确">3. 如何检查网表是否正确？<a hidden class="anchor" aria-hidden="true" href="#3-如何检查网表是否正确">#</a></h3>
+<p>当你打开生成的 <code>mult32_netlist.v</code> 文件时：</p>
+<ol>
+<li><strong>看名字：</strong>  里面的模块名（比如 <code>AND2X1</code>​、<code>FAX1</code>​）必须是 <strong>SMIC .18 工艺库</strong>里的名字。如果看到 <code>GTECH_AND</code> 这种名字，说明综合没完全成功（没映射到具体工艺上）。</li>
+<li><strong>看结构：</strong>  里面不应该再出现 <code>assign P = A * B;</code> 这种语句。</li>
+<li><strong>看端口：</strong>  模块的输入输出端口（<code>A</code>​, <code>B</code>​, <code>P</code>）应该和你原始设计保持一致。</li>
+</ol>
+<p>下一步操作建议：</p>
+<p>修改你的 run.tcl，加上 write -format verilog &hellip; 那行代码，重新运行一遍 DC，然后去文件夹里找生成的 .v 文件。</p>
+<p>‍</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<h1 id="仿真配置">仿真配置<a hidden class="anchor" aria-hidden="true" href="#仿真配置">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tcl" data-lang="tcl"><span style="display:flex;"><span>vcs <span style="color:#f92672">-</span>R <span style="color:#f92672">-</span>full64 <span style="color:#f92672">-</span>debug_access<span style="color:#f92672">+</span>all <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>    tb_mult.v <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>    signed_vedic_mult_32bit_netlist.v <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>    -v <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>ICer<span style="color:#f92672">/</span>EDA<span style="color:#f92672">/</span>verilog<span style="color:#f92672">/</span>tsmc13.v <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span>neg_tchk <span style="color:#f92672">+</span>maxdelays
+</span></span></code></pre></div><p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<h3 id="-关于-fatal-error-loading-environment-variables">. 关于 &ldquo;Fatal: Error loading environment variables&hellip;&rdquo;<a hidden class="anchor" aria-hidden="true" href="#-关于-fatal-error-loading-environment-variables">#</a></h3>
+<p>你 Log 的最后出现了这个严重错误：</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<p>驱动能力  5V</p>
+<p>‍</p>
+<p>‍</p>
+<p>Plaintext</p>
+<pre tabindex="0"><code>Fatal: Error loading environment variables from environment file.
+Terminating execution.
+</code></pre><p><strong>这意味着你的仿真环境配置（AMS Designer）挂了。</strong></p>
+<ul>
+<li>
+<p>​<strong>影响</strong>​：如果你只是画图、跑 LVS/DRC，这可能暂时不影响你使用。但如果你要进行 ​<strong>数模混合仿真 (AMS Simulation)</strong> ，工具会无法启动。</p>
+</li>
+<li>
+<p>​<strong>原因</strong>​：通常是因为你的 Linux 环境变量配置有问题，或者工程目录下的 <code>.cdsinit</code>​ / <code>ams.env</code> 文件里指向的路径不对。</p>
+</li>
+<li>
+<p>​<strong>建议</strong>：</p>
+<ul>
+<li>如果 Virtuoso 没有闪退，可以先忽略它，专注解决上面的黄色框问题。</li>
+<li>如果后续跑仿真报错，建议联系实验室负责服务器的同学，检查一下 <code>AMS_DIR</code> 或相关的环境变量设置</li>
+</ul>
+</li>
+</ul>
+&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+<li id="fn:2">
+<h1 id="总结配置">总结配置<a hidden class="anchor" aria-hidden="true" href="#总结配置">#</a></h1>
+<ol>
+<li>DC用sdl</li>
+<li>需要配置symbol（没的话仿真不了）和schematic（重要）</li>
+<li>网表要对应</li>
+<li>模型库<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></li>
+</ol>
+<p>‍</p>
+<p>‍&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<h1 id="vcs-仿真命令">VCS 仿真命令<a hidden class="anchor" aria-hidden="true" href="#vcs-仿真命令">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vcs -R -full64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -debug_acc+all -debug_region+cell+encrypt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -timescale<span style="color:#f92672">=</span>1ns/1ps <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  +v2k <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  tsmc13.v <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  signed_vedic_mult_32bit_netlist.v <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  signed_vedic_mult_32bit_tb.v <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -l func_sim.log
+</span></span></code></pre></div><p>‍</p>
+<p>dve -vpd inter.vpd</p>
+<p><em>注意</em>：这次运行后，你应该会看到生成了一个稍微大一点的 <code>inter.vpd</code>​ 或 <code>vcdplus.vpd</code> 文件。</p>
+<p>vcdplus.vpd</p>
+<p>dve -vcdplus.vpd</p>
+<p>‍</p>
+<p>./simv -gui &amp;</p>
+<p>run</p>
+<p>‍</p>
+<p>如果你做后端或验证，通常会用 Verdi 来查看网表，它的原理图追踪功能比 Design Vision 强大得多。</p>
+<p>看图</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>verdi -sv signed_vedic_mult_32bit_netlist.v tsmc13.v &amp;
+</span></span></code></pre></div>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+<li id="fn:4">
+<h1 id="数字全流程虚拟机">数字全流程虚拟机<a hidden class="anchor" aria-hidden="true" href="#数字全流程虚拟机">#</a></h1>
+<p>这是一个非常“豪华”且专业的IC设计环境（通常被称为EDA虚拟机），几乎涵盖了数字IC设计（前端、后端）、模拟IC设计以及FPGA开发的整个全流程工具。</p>
+<p>对于你的微电子科学与工程专业背景，这个环境非常适合学习和做项目。</p>
+<p>以下是根据你提供的目录截图整理的工具清单及其作用，以及关于替代ModelSim的回答：</p>
+<h3 id="1-能替代-modelsim-的数字仿真工具">1. 能替代 ModelSim 的数字仿真工具<a hidden class="anchor" aria-hidden="true" href="#1-能替代-modelsim-的数字仿真工具">#</a></h3>
+<p>你问有没有能替代 ModelSim 的工具，<strong>答案是：有，而且更强大、更符合工业界标准。</strong></p>
+<p>在这个虚拟机中，你有<strong>三个</strong>顶级的工业级仿真器，它们在性能和功能上都超越了普通的 ModelSim：</p>
+<ul>
+<li>
+<p>​<strong>​<code>vcs</code>​</strong>​  <strong>(Synopsys VCS):</strong></p>
+<ul>
+<li><strong>地位：</strong>  业界最主流的数字逻辑仿真器之一（通常与 Verdi 配合使用）。</li>
+<li><strong>特点：</strong>  它是编译型仿真器（Compile-based），速度比 ModelSim（解释型）快得多，尤其是在大规模设计时。</li>
+<li><strong>用法：</strong>  配合 <strong>Verdi</strong> 查看波形是数字IC设计工程师的标准工作流（不再是像 ModelSim 那样看自带的波形窗口）。</li>
+</ul>
+</li>
+<li>
+<p>​<strong>​<code>questasim</code>​</strong>​  <strong>(Mentor Questasim):</strong></p>
+<ul>
+<li><strong>地位：</strong>  它是 ModelSim 的“大哥”或“高级版”。</li>
+<li><strong>特点：</strong>  界面和操作逻辑与 ModelSim 几乎一模一样，但支持更多的高级验证特性（如 SystemVerilog 断言、UVM 方法学等），且仿真速度更快。如果你习惯了 ModelSim，上手这个是零门槛的。</li>
+</ul>
+</li>
+<li>
+<p>​<strong>​<code>INCISIVE</code>​</strong>​  <strong>(Cadence Incisive / IES):</strong></p>
+<ul>
+<li><strong>地位：</strong>  Cadence 家的数字仿真平台（命令通常是 <code>ncsim</code>​ 或 <code>irun</code>）。</li>
+<li><strong>特点：</strong>  同样是工业级强力仿真工具，常用于混合信号仿真（配合 Virtuoso）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>建议：</strong>  作为微电子专业的学生，建议你<strong>尽早开始学习使用</strong> <strong>​<code>VCS + Verdi</code>​</strong> 的组合，这是目前数字后端和验证岗位最核心的技能之一。</p>
+<hr>
+<h3 id="2-虚拟机内其他工具详细介绍">2. 虚拟机内其他工具详细介绍<a hidden class="anchor" aria-hidden="true" href="#2-虚拟机内其他工具详细介绍">#</a></h3>
+<p>我们将这些工具按照厂商和用途分类：</p>
+<h4 id="a-synopsys-系列-数字ic设计的核心力量"><strong>A. Synopsys 系列 (数字IC设计的核心力量)</strong><a hidden class="anchor" aria-hidden="true" href="#a-synopsys-系列-数字ic设计的核心力量">#</a></h4>
+<p>截图路径：<code>synopsys</code> 目录下</p>
+<ul>
+<li>​<strong>​<code>vcs</code>​</strong>​  <strong>/</strong>  <strong>​<code>vcs-mx</code>​</strong>​ <strong>:</strong>  数字逻辑仿真器（前面已提）。</li>
+<li>​<strong>​<code>verdi</code>​</strong>​ <strong>:</strong>  ​<strong>最强大的波形查看与调试工具</strong>。它不产生波形，而是读取 VCS 跑出来的波形文件（.fsdb），用于追踪信号、查看原理图逻辑，是数字工程师每天都要用的神器。</li>
+<li>​<strong>​<code>syn</code>​</strong>​  <strong>(Design Compiler - DC):</strong>  ​<strong>逻辑综合工具</strong>。将你写的 Verilog RTL 代码转换成门级网表（Gate-level Netlist）。这是数字前端设计最重要的工具。</li>
+<li>​<strong>​<code>icc2</code>​</strong>​  <strong>(IC Compiler II):</strong>  ​<strong>数字后端布局布线工具 (P&amp;R)</strong> 。用于将综合后的网表变成实际的版图（Layout）。</li>
+<li>​<strong>​<code>pts</code>​</strong>​  <strong>(PrimeTime - PT):</strong>  ​<strong>静态时序分析工具 (STA)</strong> 。用于检查芯片能否在指定频率下稳定工作，是Sign-off（签核）的金标准。</li>
+<li>​<strong>​<code>SpyGlass</code>​</strong>​ <strong>:</strong>  ​<strong>RTL 检查工具</strong>。用于在综合之前检查你的代码风格、跨时钟域（CDC）问题等，防止低级错误。</li>
+<li>​<strong>​<code>lc</code>​</strong>​  <strong>(Library Compiler):</strong>  库文件处理工具，用于将 .lib 转为 .db 格式供 DC 使用。</li>
+</ul>
+<h4 id="b-cadence-系列-模拟数模混合设计霸主"><strong>B. Cadence 系列 (模拟/数模混合设计霸主)</strong><a hidden class="anchor" aria-hidden="true" href="#b-cadence-系列-模拟数模混合设计霸主">#</a></h4>
+<p>截图路径：<code>cadence</code> 目录下</p>
+<ul>
+<li>​<strong>​<code>IC617</code>​</strong>​  <strong>(Virtuoso):</strong>  ​<strong>模拟/混合信号版图与原理图设计工具</strong>。画 MOS 管、画版图、做 DRC/LVS 都要用到它。微电子学生应该非常熟悉这个界面。</li>
+<li>​<strong>​<code>MMSIM151</code>​</strong>​  <strong>(Spectre):</strong>  ​<strong>模拟电路仿真器</strong>。在 Virtuoso 里跑仿真（AC/DC/Tran）时，后台调用的就是它。</li>
+<li>​<strong>​<code>INCISIVE152</code>​</strong>​ <strong>:</strong>  数字仿真平台（前面已提）。</li>
+</ul>
+<h4 id="c-mentor-现-siemens-eda-系列"><strong>C. Mentor (现 Siemens EDA) 系列</strong><a hidden class="anchor" aria-hidden="true" href="#c-mentor-现-siemens-eda-系列">#</a></h4>
+<p>截图路径：<code>mentor</code> 目录下</p>
+<ul>
+<li>​<strong>​<code>Calibre2015</code>​</strong>​ <strong>:</strong>  ​<strong>物理验证金标准</strong>。用于做 DRC（设计规则检查）、LVS（版图原理图一致性检查）和 PEX（寄生参数提取）。在 Virtuoso 画完版图后，必须用 Calibre 跑一遍才算完成。</li>
+<li>​<strong>​<code>questasim</code>​</strong>​ <strong>:</strong>  高级数字仿真器（前面已提）。</li>
+</ul>
+<h4 id="d-xilinx-系列-fpga-开发"><strong>D. Xilinx 系列 (FPGA 开发)</strong><a hidden class="anchor" aria-hidden="true" href="#d-xilinx-系列-fpga-开发">#</a></h4>
+<p>截图路径：<code>Xilinx</code> 目录下</p>
+<ul>
+<li>​<strong>​<code>Vivado 2019.1</code>​</strong>​ <strong>:</strong>  Xilinx 的 FPGA 集成开发环境。包含综合、布局布线和仿真。</li>
+<li>​<strong>​<code>SDK</code>​</strong>​ <strong>:</strong>  嵌入式软件开发工具（通常用于 Zynq 系列里的 ARM 核开发）。</li>
+</ul>
+<h4 id="e-开源轻量级工具"><strong>E. 开源/轻量级工具</strong><a hidden class="anchor" aria-hidden="true" href="#e-开源轻量级工具">#</a></h4>
+<ul>
+<li>​<strong>​<code>iverilog</code>​</strong>​  <strong>(Icarus Verilog):</strong>  开源的 Verilog 仿真器，轻量级，适合简单测试。</li>
+<li>​<strong>​<code>gtkwave</code>​</strong>​ <strong>:</strong>  开源的波形查看器，通常配合 iverilog 使用。</li>
+<li>​<strong>​<code>Riscv_Tools</code>​</strong>​ <strong>:</strong>  专门用于 RISC-V 处理器开发的工具链（编译器 gcc 等）。</li>
+</ul>
+<h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>这个虚拟机环境非常完善：</p>
+<ol>
+<li><strong>做数字IC：</strong>  你有 VCS (仿真) + Verdi (调试) + DC (综合) + ICC2 (后端) + PrimeTime (时序)。</li>
+<li><strong>做模拟IC：</strong>  你有 Virtuoso (设计) + Spectre (仿真) + Calibre (验证)。</li>
+<li><strong>做FPGA：</strong>  你有 Vivado。</li>
+</ol>
+<p><strong>对于你的“替代 ModelSim”的需求，直接去</strong> <strong>​<code>synopsys</code>​</strong>​ <strong>目录下找</strong> <strong>​<code>vcs</code>​</strong>​ <strong>，或者在终端里配置好环境变量后尝试运行</strong> <strong>​<code>vcs</code>​</strong>​ <strong>或</strong> <strong>​<code>verdi</code>​</strong>​ <strong>即可。</strong>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<h1 id="翻译加入">翻译加入<a hidden class="anchor" aria-hidden="true" href="#翻译加入">#</a></h1>
+<p>要在 Virtuoso (IC617) 中使用这个库，你需要把它“挂载”到 Library Manager 中。</p>
+<p>根据你提供的截图，你已经在 <code>osu_soc-master/cadence/lib/tsmc018</code> 路径下找到了库文件夹。</p>
+<p>请按照以下步骤操作：</p>
+<h3 id="第一步确认-linux-路径">第一步：确认 Linux 路径<a hidden class="anchor" aria-hidden="true" href="#第一步确认-linux-路径">#</a></h3>
+<p>非常重要： 你的截图 显示的是 Windows 路径 (D:\Virtual_share&hellip;)。</p>
+<p>Virtuoso 运行在 Linux 中，它读不到 D 盘。你需要找到这个“共享文件夹”在 Linux 里的挂载路径。</p>
+<ul>
+<li>通常是在 <code>/mnt/hgfs/Virtual_share/</code>​ 或者 <code>/media/sf_Virtual_share/</code> 下。</li>
+<li>你需要定位到 Linux 下的这个文件夹：<code>.../osu_soc-master/cadence/lib/tsmc018/OSU_stdcells_tsmc018</code></li>
+</ul>
+<h3 id="第二步在-library-manager-中添加库">第二步：在 Library Manager 中添加库<a hidden class="anchor" aria-hidden="true" href="#第二步在-library-manager-中添加库">#</a></h3>
+<ol>
+<li>
+<p>打开 Virtuoso 的 <strong>Library Manager</strong> (库管理器)。</p>
+</li>
+<li>
+<p>在顶部菜单栏点击 <strong>Edit</strong> -&gt; ​<strong>Library Path&hellip;</strong> 。</p>
+</li>
+<li>
+<p>这会弹出一个表格编辑器。在最下面的一行空白处填写：</p>
+<ul>
+<li><strong>Library (库名):</strong>  <code>OSU_stdcells</code> (或者你自己喜欢的名字，只要记住就行)。</li>
+<li><strong>Path (路径):</strong>  点击单元格里的浏览按钮，找到上面提到的 Linux 路径，选中 <code>OSU_stdcells_tsmc018</code> 这个文件夹。</li>
+<li><em>(注意：要选那个文件夹本身，不要进去了)</em></li>
+</ul>
+</li>
+<li>
+<p>点击 <strong>File</strong> -&gt; <strong>Save</strong> (保存 <code>cds.lib</code>)，然后关闭编辑窗口。</p>
+</li>
+</ol>
+<h3 id="第三步验证库是否有效">第三步：验证库是否有效<a hidden class="anchor" aria-hidden="true" href="#第三步验证库是否有效">#</a></h3>
+<ol>
+<li>
+<p>回到 Library Manager 主界面。</p>
+</li>
+<li>
+<p>在左侧 Library 列表里，应该能看到你刚加的 <code>OSU_stdcells</code>。</p>
+</li>
+<li>
+<p>​<strong>点击它</strong>，看中间的 Cell 列表：</p>
+<ul>
+<li><strong>情况 A (成功):</strong>  如果你看到全是 <code>AND2X1</code>​, <code>DFF</code>​, <code>INV</code> 等名字，恭喜你，挂载成功！</li>
+<li><strong>情况 B (空库):</strong>  如果里面是空的，或者 Virtuoso 报错说格式不对（OpenAccess版本问题），说明这个文件夹里的数据是旧版格式或者只是个空壳。<strong>如果遇到这种情况，请看下面的“Plan B”。</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第四步回到-verilog-in-界面-解决你的最初问题">第四步：回到 Verilog In 界面 (解决你的最初问题)<a hidden class="anchor" aria-hidden="true" href="#第四步回到-verilog-in-界面-解决你的最初问题">#</a></h3>
+<p>一旦第三步确认成功，你就可以回到“Verilog In”导入界面 进行修改了：</p>
+<ol>
+<li><strong>Target Library Name:</strong>  建议填 <code>my_design</code> (你自己新建的库)。</li>
+<li>Reference Libraries: 这里填写：<br>
+OSU_stdcells basic analogLib<br>
+(注意：OSU_stdcells 必须和你第二步里起的 Library 名字一模一样)</li>
+</ol>
+<hr>
+<h3 id="plan-b如果直接挂载全是空的-使用-gds-导入">Plan B：如果直接挂载全是空的 (使用 GDS 导入)<a hidden class="anchor" aria-hidden="true" href="#plan-b如果直接挂载全是空的-使用-gds-导入">#</a></h3>
+<p>OSU 的这个包有时候库文件不完整，但它一定提供了 <strong>GDSII</strong> 版图文件。如果上面的方法不行，请用这个方法“重建”库：</p>
+<ol>
+<li>
+<p><strong>新建库：</strong>  Library Manager -&gt; File -&gt; New -&gt; Library。</p>
+<ul>
+<li>名字：<code>OSU_stdcells</code>。</li>
+<li>Technology File: 选择 <code>Attach to an existing technology library</code>​ -&gt; 选择 <code>NCSU_TechLib_tsmc02</code>​ (或者是 tsmc03，如果没有就选 <code>Do not need process info</code>)。</li>
+</ul>
+</li>
+<li>
+<p><strong>导入 GDS：</strong></p>
+<ul>
+<li>Virtuoso 主界面 -&gt; <strong>File</strong> -&gt; <strong>Import</strong> -&gt; ​<strong>Stream</strong>。</li>
+<li><strong>Stream File:</strong>  浏览找到 <code>.../osu_soc-master/cadence/lib/tsmc018/osu018_stdcells.gds2</code>​ (这个文件通常在 <code>lib</code> 文件夹同级或里面)。</li>
+<li><strong>Library:</strong>  选择刚才新建的 <code>OSU_stdcells</code>。</li>
+<li>点击 ​<strong>Translate</strong>。</li>
+</ul>
+</li>
+<li>
+<p>这会自动把版图数据转换成 Virtuoso 的库。完成后，你再进行“第四步”即可。</p>
+</li>
+</ol>
+&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+<li id="fn:6">
+<h1 id="转换库">转换库<a hidden class="anchor" aria-hidden="true" href="#转换库">#</a></h1>
+<p>‍</p>
+<p>终端不能在同一个开启</p>
+<p>‍</p>
+<p>这是一个非常典型的  <strong>“操作位置冲突”</strong>  错误。</p>
+<p>简单来说：你正在  <strong>​<code>/root/Desktop/</code>​</strong> ​ 目录下运行转换工具，而你要修改的 <strong>​<code>cds.lib</code>​</strong>​ 文件也在这个目录下。<code>cdb2oa</code>​ 工具为了保护文件不被写坏，<strong>禁止</strong>在包含 <code>cds.lib</code> 的同一级目录下运行它自己。</p>
+<h3 id="-解决方案换个地方运行命令">✅ 解决方案：换个地方运行命令<a hidden class="anchor" aria-hidden="true" href="#-解决方案换个地方运行命令">#</a></h3>
+<p>你只需要退到其他目录（比如 <code>/tmp</code> 临时目录），然后“远程遥控”运行转换命令即可。</p>
+<p>请​<strong>关闭 Virtuoso</strong>，打开终端 (Terminal)，严格按照以下 3 步操作：</p>
+<h4 id="第一步进入临时目录">第一步：进入临时目录<a hidden class="anchor" aria-hidden="true" href="#第一步进入临时目录">#</a></h4>
+<p>在终端输入：</p>
+<p>Bash</p>
+<pre tabindex="0"><code>cd /tmp
+</code></pre><p><em>(这一步是为了离开 Desktop 目录，避开那个报错)</em></p>
+<h4 id="第二步运行转换命令">第二步：运行转换命令<a hidden class="anchor" aria-hidden="true" href="#第二步运行转换命令">#</a></h4>
+<p>复制并运行下面这行命令（这是根据你报错日志生成的修正命令）：</p>
+<p>Bash</p>
+<pre tabindex="0"><code>cdb2oa -lib OSU_CDB -cdslibpath /root/Desktop/cds.lib
+</code></pre><ul>
+<li>
+<p><strong>解释：</strong></p>
+<ul>
+<li>​<code>-lib OSU_CDB</code>：转换你刚才定义的那个旧版库。</li>
+<li>​<code>-cdslibpath ...</code>：告诉工具去哪里找你的配置文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>执行过程中：</strong>  屏幕可能会滚动很多日志，如果没有报错 <code>ERROR</code>​，并且最后显示 <code>cdb2oa</code> 结束，那就是成功了。</p>
+</li>
+</ul>
+<h4 id="第三步重启-virtuoso-验证">第三步：重启 Virtuoso 验证<a hidden class="anchor" aria-hidden="true" href="#第三步重启-virtuoso-验证">#</a></h4>
+<ol>
+<li>回到你的工作目录：</li>
+<li>打开 ​<strong>Library Manager</strong>。</li>
+<li>点击左侧的 <strong>​<code>OSU_CDB</code>​</strong> 库。</li>
+<li><strong>关键时刻：</strong>  看中间的 <strong>Cell</strong> 列表（比如点 <code>AND2X1</code>​），现在右边的 <strong>View</strong> 列表里应该同时出现了 ​<strong>​<code>layout</code>​</strong>​, ​<strong>​<code>schematic</code>​</strong>​, 和 ​<strong>​<code>symbol</code>​</strong>！</li>
+</ol>
+<hr>
+<h3 id="-最后一步重新导入网表-verilog-in">🚀 最后一步：重新导入网表 (Verilog In)<a hidden class="anchor" aria-hidden="true" href="#-最后一步重新导入网表-verilog-in">#</a></h3>
+<p>一旦你在 Library Manager 里看到了 ​<strong>​<code>symbol</code>​</strong>，就说明你已经拿到了“拼图的说明书”。</p>
+<ol>
+<li>
+<p>打开 ​<strong>File -&gt;</strong>  <strong>Import -&gt;</strong>  <strong>Verilog</strong>。</p>
+</li>
+<li>
+<p><strong>Reference Libraries</strong> 必须修改为：</p>
+<pre tabindex="0"><code>OSU_CDB basic analogLib
+</code></pre><p><em>(注意：一定要填刚才转换成功的库名</em> <em>​<code>OSU_CDB</code>​</em>​ <em>，不要再填那个只有 Layout 的</em> <em>​<code>OSU_stdcells</code>​</em>​ <em>了)</em></p>
+</li>
+<li>
+<p>点击 ​<strong>OK</strong>。</p>
+</li>
+</ol>
+<p>这次导入生成的 Schematic，必定是连线完整的电路图！&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<h1 id="模型库">模型库<a hidden class="anchor" aria-hidden="true" href="#模型库">#</a></h1>
+<p>这是一个非常关键的发现。从你的截图来看，<code>tran_models</code>​ 在你的 Windows 系统里显示为一个​<strong>黄色文件夹</strong>​，这在标准的 FreePDK45 结构中是不太正常的（通常它应该是一个名为 <code>tran_models.sp</code>​ 的​<strong>文件</strong>）。</p>
+<p>这很可能是解压或下载过程中产生的问题（例如多套了一层文件夹）。</p>
+<p>请按照以下 3 步操作来修复：</p>
+<h3 id="第一步点进这个文件夹看看">第一步：点进这个文件夹看看<a hidden class="anchor" aria-hidden="true" href="#第一步点进这个文件夹看看">#</a></h3>
+<p>请双击打开截图中的这个 <code>tran_models</code>​ ​<strong>文件夹</strong>。</p>
+<ul>
+<li>​<strong>情况 A</strong>​：如果你在里面看到了一个叫 <code>tran_models.sp</code>​ 或者 <code>models.sp</code>​ 的文件，​<strong>那个才是真正的模型文件</strong>。</li>
+<li>​<strong>情况 B</strong>：如果你点进去是空的，或者是乱码文件，那么可能是文件丢失了。</li>
+</ul>
+<p>通常正确的路径结构应该是：</p>
+<p>&hellip;/ncsu_basekit/models/hspice/tran_models.sp (这是一个文本文件)</p>
+<h3 id="第二步确认文件路径windows-vs-linux">第二步：确认文件路径（Windows vs Linux）<a hidden class="anchor" aria-hidden="true" href="#第二步确认文件路径windows-vs-linux">#</a></h3>
+<p>由于你在跑 Spectre 仿真（这是 Linux 软件），而你的截图是 Windows 界面，说明你用了虚拟机共享文件夹（<code>Virtual_share</code>）。</p>
+<p><strong>绝对不要</strong>在 Cadence 里面直接填 Windows 的路径（如 <code>D:\Virtual_share...</code>），Cadence 读不懂。</p>
+<p>你需要找到这个文件在 ​<strong>Linux 系统里的对应路径</strong>。通常它长这样：</p>
+<ul>
+<li>​<code>/mnt/hgfs/Virtual_share/des_test/ncsu_basekit/models/hspice/tran_models/tran_models.sp</code></li>
+<li>或者 <code>/home/你的用户名/Desktop/share/...</code></li>
+</ul>
+<h3 id="第三步在-ade-中加载正确的文件">第三步：在 ADE 中加载正确的文件<a hidden class="anchor" aria-hidden="true" href="#第三步在-ade-中加载正确的文件">#</a></h3>
+<ol>
+<li>回到 Cadence ADE 的 <strong>Model Libraries</strong> 设置窗口。</li>
+<li>点击 Browse（浏览），沿着 <strong>Linux 的挂载路径</strong> 找到那个真正的 <code>.sp</code> 文件。</li>
+<li>加载后，<strong>Section</strong> 一栏​<strong>留空</strong>（不要填 tt）。</li>
+</ol>
+<p>如果你在文件夹里找不到 .sp 文件：</p>
+<p>你可以直接退回到上一级目录 &hellip;/ncsu_basekit/models/hspice/，看看这一层有没有名为 hspice_nom.include 或者 tran_models.sp 的文件。如果有，直接用那个即可。</p>
+<p><strong>一句话总结：</strong>  请点进那个黄色文件夹，找到里面的 <code>.sp</code> 文件，并在 Cadence 里通过 Linux 路径加载它。&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">我的博客</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
