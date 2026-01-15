@@ -1,28 +1,58 @@
 baseURL: "https://example.org/"
-title: "我的博客"  # 这里改成你的博客名字
+title: "我的博客"
 theme: "PaperMod"
 
-# 1. 核心语言设置 (确保中文支持)
+# 1. 核心语言设置
 languageCode: "zh-cn"
 defaultContentLanguage: "zh"
-hasCJKLanguage: true  # 开启中日韩字符统计，修正阅读时间
+hasCJKLanguage: true  # 必须开启，否则中文字数统计和阅读时间会出错
+timeZone: "Asia/Shanghai"
 
-# 2. PaperMod 外观设置
+# 2. 链接与内容优化 (解决思源文件名乱码问题)
+permalinks:
+  # 将文章链接格式化为：域名/年份/月份/文章标题/
+  # 这样即使文件名是 "dc-process-2ktjse.md"，网页链接也会变成 clean 的 "/2025/12/dc运行流程/"
+  post: "/:year/:month/:title/"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # 允许 Markdown 中包含 HTML (思源导出时常带有 HTML 标签)
+  highlight:
+    # 代码高亮设置 (适合你的 Verilog/TCL 代码)
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    style: "monokai" # 推荐使用深色高亮风格
+
+# 3. PaperMod 主题参数
 params:
-  defaultTheme: auto # 自动跟随系统切换深色模式
-  # 首页显示的个人信息
+  env: production
+  defaultTheme: auto
+  
+  # 关键：开启数学公式支持 (为了显示电路推导、微电子公式)
+  math: true 
+  
+  # 界面显示设置
+  ShowToc: true # 显示文章右侧目录 (技术文章必备)
+  TocOpen: true # 默认展开目录
+  ShowBreadCrumbs: true # 显示面包屑导航
+  ShowReadingTime: true # 显示阅读时间
+  ShowWordCount: true # 显示字数
+  
+  # 首页个人信息
   homeInfoParams:
     Title: "你好 👋"
-    Content: "欢迎来到我的数字花园，这里记录微电子、生活与思考。"
-  
-  # 顶部社交图标 (示例，可稍后修改)
+    Content: "欢迎来到我的数字花园，这里记录微电子、IC设计与生活思考。"
+
+  # 社交图标
   socialIcons:
     - name: github
       url: "https://github.com/你的用户名"
     - name: email
       url: "mailto:你的邮箱@example.com"
 
-# 3. 菜单设置 (右上角的导航)
+# 4. 菜单设置
 menu:
   main:
     - identifier: categories
@@ -37,4 +67,3 @@ menu:
       name: 归档
       url: /archives/
       weight: 30
- 
