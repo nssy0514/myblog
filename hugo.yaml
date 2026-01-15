@@ -37,10 +37,3 @@ menu:
       name: 归档
       url: /archives/
       weight: 30
-# 你的 Vercel 分配的域名（或者你买的域名）
-# 如果还没绑定自定义域名，暂时写 "/" 也可以，配合 relativeURLs 使用
-baseURL: "/" 
-
-# 核心修改：增加这一行！
-relativeURLs: true
-# 这一行强制让 Hugo 生成 ./css/style.css 这样的链接，而不是 https://...
