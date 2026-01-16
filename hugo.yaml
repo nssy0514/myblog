@@ -64,28 +64,27 @@ menu:
 
 # ---------------------------------------------------------------
 # 5. 主题参数配置 (移植自 hugo copy.yaml)
-# ---------------------------------------------------------------
 params:
-  # 页面布局模式：Gemini 是 NexT 中最经典的左侧独立侧边栏风格
+  # ==========================================
+  # 1. 核心布局与外观 (必须完整)
+  # ==========================================
   scheme: Gemini
-  darkmode: true # 开启暗黑模式切换
+  darkmode: true
+  
+  # [修复报错] 滚动条设置
   bodyScrollbar:
-    overlay: false # 是否覆盖内容
-    stable: true   # 是否总是显示
+    overlay: false
+    stable: true
 
-  # 2. 主题颜色设置 (CSS 必须变量，建议一并补上防止后续报错)
+  # [修复报错] 移动端布局
+  mobileLayoutEconomy: true
+
+  # [修复报错] 主题配色
   themeColor:
     light: "#222"
     dark: "#222"
 
-  # 站点描述
-  author: Varyan.Z  # 建议修改为你的名字
-  description: "记录微电子、IC设计与生活思考" # 融合了你原文件中的描述
-  mobileLayoutEconomy: true
-
-  # --- ⚠️ 预防下一个报错 (建议一并补全) ---
-  
-  # 1. 字体设置 (缺少这个通常会导致 font 相关的 SCSS 报错)
+  # [修复报错] 字体设置 (防止 font-family 报错)
   font:
     enable: true
     global:
@@ -104,7 +103,41 @@ params:
       external: true
       family:
 
-  # 2. 动画效果 (NexT 主题的核心样式依赖)
+  # ==========================================
+  # 2. 组件样式 (防止 "...r" 和 "...e" 报错)
+  # ==========================================
+  
+  # [关键嫌疑人] 书签功能 (缺少这个会导致 color 报错)
+  bookmark:
+    enable: false
+    color: "#222"
+    save: manual
+
+  # [关键嫌疑人] 侧边栏细节 (缺少 padding/offset 会报错)
+  sidebar:
+    position: left
+    width: 256
+    display: post
+    padding: 18  # 缺失会导致计算错误
+    offset: 12   # 缺失会导致计算错误
+    avatar:
+      url: /imgs/avatar.png
+      rounded: true
+      rotated: true
+
+  # [防报错] 提示块样式 (Note Tag)
+  note:
+    style: simple
+    icons: true
+    lightBgOffset: 0
+
+  # [防报错] 代码块样式
+  codeblock:
+    style: mac
+    copyBtn: true
+    maxHeight: 200
+
+  # [防报错] 动画设置
   motion:
     enable: true
     async: true
@@ -115,44 +148,40 @@ params:
       collHeader: slideInRight
       sidebar: fadeInUp
 
-  # -------------------------------------------------------------
-  # 侧边栏设置 (NexT 强项)
-  # -------------------------------------------------------------
-  sidebar:
-    position: left
-    width: 256
-    display: post
-    avatar:
-      # 请确保 /static/imgs/ 下有你的头像图片，否则请注释掉
-      url: /imgs/avatar.png 
-      rounded: true
-      rotated: true
+  # ==========================================
+  # 3. 个人信息与功能
+  # ==========================================
+  author: Varyan.Z
+  description: "记录微电子、IC设计与生活思考"
   
-  siteState:
-    basic: true
-    views:
-      enable: true
-      plugin: busuanzi # 开启不蒜子访问统计
+  # 底部信息 (包含 icon color)
+  footer:
+    since: 2025
+    icon:
+      name: fa fa-heart
+      animated: true
+      color: "#ff0000"
+    powered: true
+    beian:
+      enable: false
 
-  # 社交链接 (建议根据实际情况修改)
+  # 社交链接
   socials:
     social0: Github || https://github.com/你的用户名 || fab fa-github
     social1: Email || mailto:你的邮箱@example.com || fa fa-envelope
-    social2: 知乎 || https://www.zhihu.com/ || fa fa-book
 
   socialIcons:
     enable: true
     transition: true
 
-  # -------------------------------------------------------------
-  # 文章页面设置
-  # -------------------------------------------------------------
+  # 目录设置
   toc:
     enable: true
     number: true
     wrap: false
-    maxDepth: 3 # 目录深度
+    maxDepth: 3
 
+  # 文章元数据
   postMeta:
     itemText: true
     created: true
@@ -160,24 +189,11 @@ params:
       enable: true
       anotherDay: true
     categories: true
-    wordCount: true # 显示字数
-    readTime: true  # 显示阅读时长
+    wordCount: true
+    readTime: true
     views:
       enable: true
       plugin: busuanzi
-
-  # 代码块样式 (NexT 特有)
-  codeblock:
-    style: mac      # 这是一个很好看的 Mac 窗口风格
-    copyBtn: true   # 开启代码复制按钮
-
-  # -------------------------------------------------------------
-  # 功能增强
-  # -------------------------------------------------------------
-  # 返回顶部按钮
-  backTop:
-    enable: true
-    scrollpercent: true
 
   # 阅读进度条
   readingProgress:
@@ -186,10 +202,13 @@ params:
     position: top
     height: 3px
 
-  # -------------------------------------------------------------
-  # 数学公式 (关键：适配微电子公式推导)
-  # -------------------------------------------------------------
-  # NexT 使用 mathjax 或 katex，这里配置为 mathjax
+  # 搜索与数学公式
+  localSearch:
+    enable: true
+    path: /searchindexes.xml
+    trigger: auto
+    topNPerArticle: -1
+
   math: mathjax
 
   # -------------------------------------------------------------
