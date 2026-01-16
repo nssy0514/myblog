@@ -69,6 +69,14 @@ params:
   # 页面布局模式：Gemini 是 NexT 中最经典的左侧独立侧边栏风格
   scheme: Gemini
   darkmode: true # 开启暗黑模式切换
+  bodyScrollbar:
+    overlay: false # 是否覆盖内容
+    stable: true   # 是否总是显示
+
+  # 2. 主题颜色设置 (CSS 必须变量，建议一并补上防止后续报错)
+  themeColor:
+    light: "#222"
+    dark: "#222"
 
   # 站点描述
   author: Varyan.Z  # 建议修改为你的名字
