@@ -81,6 +81,39 @@ params:
   # 站点描述
   author: Varyan.Z  # 建议修改为你的名字
   description: "记录微电子、IC设计与生活思考" # 融合了你原文件中的描述
+  mobileLayoutEconomy: true
+
+  # --- ⚠️ 预防下一个报错 (建议一并补全) ---
+  
+  # 1. 字体设置 (缺少这个通常会导致 font 相关的 SCSS 报错)
+  font:
+    enable: true
+    global:
+      external: true
+      family: Lato
+    title:
+      external: true
+      family:
+    headings:
+      external: true
+      family:
+    posts:
+      external: true
+      family:
+    codes:
+      external: true
+      family:
+
+  # 2. 动画效果 (NexT 主题的核心样式依赖)
+  motion:
+    enable: true
+    async: true
+    transition:
+      postBlock: fadeIn
+      postHeader: fadeInDown
+      postBody: fadeInDown
+      collHeader: slideInRight
+      sidebar: fadeInUp
 
   # -------------------------------------------------------------
   # 侧边栏设置 (NexT 强项)
